@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="relative w-full h-screen overflow-hidden">
+
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="{% static "core/video/ukrainian_flag.mp4" %}" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-['Raleway'] font-light tracking-wide mb-6">
+                Підтримка ментального здоров'я ветеранів з ПТСР:
+            </h1>
+            <p class="text-lg md:text-2xl font-['Raleway'] font-extralight max-w-2xl px-4 tracking-wider opacity-90">
+                Надійні інструменти для розуміння себе, контролю стресу та покращення якості життя після травматичного досвіду
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center w-full bg-[#1a1a1a] px-10 py-16">
+        <div class="flex flex-wrap md:flex-nowrap gap-10 justify-center items-start w-full max-w-7xl">
+
+            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+                <img src="{% static "core/images/pass_test.png" %}" alt="Тест" class="w-full aspect-square object-cover mb-6">
+                <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Пройти тест</h3>
+                <p class="text-gray-400 text-lg font-light tracking-wider">Чи маю я ПТСР?</p>
+            </a>
+
+            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+                <img src="{% static "core/images/self_help.png" %}" alt="Техніки" class="w-full aspect-square object-cover mb-6">
+                <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Техніки самодопомоги</h3>
+                <p class="text-gray-400 text-lg font-light tracking-wider">Дихальні практики та інші поради</p>
+            </a>
+
+            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+                <img src="{% static "core/images/emotions_track.png" %}" alt="Трекер" class="w-full aspect-square object-cover mb-6">
+                <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Трекер стану</h3>
+                <p class="text-gray-400 text-lg font-light tracking-wider">Щоденник самопочуття</p>
+            </a>
+
+            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+                <img src="{% static "core/images/e_books.png" %}" alt="Книги" class="w-full aspect-square object-cover mb-6">
+                <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Книги</h3>
+                <p class="text-gray-400 text-lg font-light tracking-wider">Електронна бібліотека для ветеранів</p>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="relative w-full h-[80vh] overflow-hidden">
+        <img src="{% static "core/images/main_pic.jpg" %}" alt="Досвід, який залишається з нами" class="absolute inset-0 w-full h-full object-cover object-top z-0">
+
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-8xl md:text-6xl font-['Raleway'] font-extralight tracking-widest mb-4 [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
+                Досвід, який залишився з вами
+            </h1>
+            <!--        <p class="text-2xl md:text-3xl font-['Raleway'] font-light tracking-wide mt-2 max-w-7xl mx-auto [text-shadow:0_3px_12px_rgba(0,0,0,0.8)]">-->
+            <!--            Ви не повинні нести цей тягар наодинці. Тут зібрано те, що допоможе повернутися до спокійної реальності.-->
+            <!--        </p>-->
+        </div>
+    </div>
+
+    <div class="w-full bg-[#1a1a1a] py-24 px-7 mt-[-1px]">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="text-center mb-16">
+                <h2 class="text-gray-200 text-3xl md:text-5xl font-['Raleway'] font-extralight tracking-[0.2em] uppercase mb-6">
+                    Це більше, ніж просто спогади
+                </h2>
+                <div class="h-px w-24 bg-gray-600 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <p class="text-gray-300 text-2xl font-['Raleway'] font-light leading-relaxed">
+                        ПТСР — це природна реакція психіки на надприродні події. Це не те, що можна просто "забути" або "перетерпіти".
+                    </p>
+                    <p class="text-gray-500 text-xl font-['Raleway'] font-extralight leading-relaxed tracking-wide">
+                        Коли ми ігноруємо свій стан, ми дозволяємо минулому керувати нашим майбутнім. Робота над ментальним здоров'ям — це не про "лікування хвороб", це про **повернення собі права на спокійне та повне життя**.
+                    </p>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="border-l border-gray-700 pl-6">
+                        <h4 class="text-gray-300 font-medium uppercase tracking-widest text-xl mb-2">Ваш контроль</h4>
+                        <p class="text-gray-500 text-base font-light">Навчіть мозок розрізняти минулу небезпеку та теперішній спокій.</p>
+                    </div>
+                    <div class="border-l border-gray-700 pl-6">
+                        <h4 class="text-gray-300 font-medium uppercase tracking-widest text-xl mb-2">Ваша родина</h4>
+                        <p class="text-gray-500 text-base font-light">Станьте опорою для себе, щоб знову бути опорою для тих, хто поруч.</p>
+                    </div>
+                    <div class="border-l border-gray-700 pl-6">
+                        <h4 class="text-gray-300 font-medium uppercase tracking-widest text-xl mb-2">Ваш ресурс</h4>
+                        <p class="text-gray-500 text-base font-light">Відновіть здоровий сон та енергію для нових цілей у цивільному житті.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full bg-white py-24 px-6 border-t border-gray-100">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
+                <div class="max-w-2xl">
+                    <h2 class="text-[#89b83a] text-4xl md:text-5xl font-['Raleway'] font-light tracking-tight mb-4">
+                        Допомога поруч прямо зараз
+                    </h2>
+                    <p class="text-gray-500 text-lg font-['Raleway'] font-light leading-relaxed">
+                        Якщо ви відчуваєте, що не справляєтесь — не зволікайте. Ці лінії підтримки працюють цілодобово, безкоштовно та анонімно.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3 bg-[#89b83a] text-white px-6 py-3 rounded-full shadow-sm">
+                    <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium tracking-wider uppercase">На зв'язку 24/7</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <a href="tel:7333" class="group bg-white p-10 rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(163,209,84,0.15)] hover:border-[#a3d154] transition-all duration-500">
+                    <h3 class="text-gray-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6">Lifeline Ukraine</h3>
+                    <div class="text-[#89b83a] text-5xl font-light tracking-tighter mb-6">7333</div>
+                    <p class="text-gray-500 text-base font-light leading-relaxed">Національна лінія запобігання суїцидам та підтримки ветеранів.</p>
+                </a>
+
+                <a href="tel:0800501212" class="group bg-white p-10 rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(163,209,84,0.15)] hover:border-[#a3d154] transition-all duration-500">
+                    <h3 class="text-gray-300 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Ветеранська допомога</h3>
+                    <div class="text-[#89b83a] text-5xl font-light tracking-tighter mb-4 leading-none py-2">0 800 501 212</div>
+                    <p class="text-gray-500 text-base font-light leading-relaxed">Кваліфікована психологічна підтримка від фахівців.</p>
+                </a>
+
+                <a href="tel:1548" class="group bg-white p-10 rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(163,209,84,0.15)] hover:border-[#a3d154] transition-all duration-500">
+                    <h3 class="text-gray-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6">Урядова лінія</h3>
+                    <div class="text-[#89b83a] text-5xl font-light tracking-tighter mb-6">1548</div>
+                    <p class="text-gray-500 text-base font-light leading-relaxed">Допомога у складних ситуаціях та кризових станах.</p>
+                </a>
+
+            </div>
+
+            <div class="mt-16 text-center">
+                <p class="text-gray-400 text-sm font-light tracking-widest uppercase italic">
+                    Ви не самі. Один дзвінок може повернути контроль.
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="relative w-full h-screen overflow-hidden">
+
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="{% static "core/video/detail_ptsd.mp4" %}" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-['Raleway'] font-light tracking-wide mb-6">
+                Можливі причини, прояви та підходи до лікування
+            </h1>
+            <p class="text-lg md:text-2xl font-['Raleway'] font-extralight max-w-2xl px-4 tracking-wider opacity-90">
+                ПТСР серед діючих військовослужбовців та ветеранів
+            </p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pt-32 pb-24 flex flex-col lg:flex-row gap-12 relative">
+
+        <article class="lg:w-3/4 space-y-16 text-gray-800">
+
+            <section id="what-is-ptsd" class="scroll-mt-32">
+                <h1 class="text-3xl font-bold text-[#5a2d4a] mb-6">Що таке Посттравматичний стресовий розлад (ПТСР)?</h1>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    Посттравматичний стресовий розлад (ПТСР) — це психічний розлад, який виникає після сильних травматичних подій, які людина пережила особисто або була свідком. Для ПТСР характерні такі симптоми, як нав’язливі спогади або сни про травматичну ситуацію, підвищена тривога, емоційне напруження, проблеми зі сном та зміни у мисленні чи поведінці.
+                </p>
+            </section>
+
+            <section id="causes" class="scroll-mt-32">
+                <h2 class="text-2xl font-bold text-[#5a2d4a] mb-6">Причини ПТСР</h2>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    Найчастішими причинами ПТСР є участь у бойових діях, насильство, зґвалтування, аварії, стихійні лиха чи раптова втрата близьких. Розлад формується як реакція на події, що перевищують межі звичайного людського досвіду.
+                </p>
+            </section>
+
+            <section id="symptoms" class="scroll-mt-32">
+                <h2 class="text-2xl font-bold text-[#5a2d4a] mb-6">Симптоми ПТСР</h2>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    За даними Національного інституту психічного здоров’я, серед військовослужбовців виділяють чотири основних типи симптомів ПТСР:
+                </p>
+                <ul class="list-disc pl-6 space-y-4 text-lg font-light text-gray-600">
+                    <li>
+                        <strong class="font-semibold text-gray-800">Повторні переживання:</strong> флешбеки, коли здається, ніби подія відбувається знову, кошмари, страшні думки, а також фізичні реакції — прискорене серцебиття чи пітливість.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-800">Уникнення:</strong> свідоме або несвідоме уникнення думок, почуттів, місць, дій чи предметів, що нагадують про травму.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-800">Збудження та реактивність:</strong> надмірна пильність, легка зляканість, напруженість, проблеми зі сном.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-800">Когнітивні зміни та зміни настрою:</strong> негативне сприйняття себе чи світу, почуття провини або звинувачення, втрата інтересу до улюблених занять.
+                    </li>
+                </ul>
+
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4 mt-4">
+                    Для встановлення діагнозу необхідно, щоб вказані симптоми зберігалися
+                    понад один місяць і суттєво порушували життєдіяльність людини. Проте
+                    перебіг розладу характеризується нестабільністю: фази ремісії можуть різко
+                    переходити у стадії загострення під впливом зовнішніх тригерів або стресу.
+                </p>
+
+
+
+            </section>
+
+            <!-- НОВА СЕКЦІЯ 4: Статистика -->
+            <section id="how-common" class="scroll-mt-32">
+                <h2 class="text-2xl font-bold text-[#5a2d4a] mb-6">Як часто зустрічається ПТСР?</h2>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    Згідно з Міністерством охорони здоров'я України, посттравматичний стресовий розлад виникає далеко не у всіх, хто пережив важкі події, а лише в межах 12–20% осіб.
+                </p>
+                <p class="text-lg font-light leading-relaxed text-gray-600">
+                    Водночас через війну кількість людей із цим діагнозом стрімко зростає. Якщо у довоєнному 2021 році таких пацієнтів було трохи більше ніж 3 тисячі, то у 2022-му цей показник перевищив 7 тисяч, а за підсумками 2023 року сягнув майже 12,5 тисяч. Темпи збільшуються: лише за перші два місяці 2024 року ПТСР діагностували такій самій кількості людей, як за весь 2021 рік.
+                </p>
+            </section>
+
+            <section id="ptsd-test" class="scroll-mt-32">
+                <h1 class="text-3xl font-bold text-[#5a2d4a] mb-6">Чи маю я ПТСР?</h1>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    Складні події залишають свій слід, і цілком природно іноді відчувати після них внутрішню важкість чи емоційне виснаження. Буває складно самостійно розібратися у власних відчуттях та зрозуміти, що саме відбувається з вашим станом. Тому, щоб не залишатися наодинці зі своїми переживаннями та сумнівами, краще переконатися і пройти тест.
+                </p>
+            </section>
+
+            <div class="mt-8">
+                <a href="#" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-[#89b83a] rounded-lg shadow-sm hover:bg-[#7ca833] hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+                    Пройти тест
+                    <!-- Іконка стрілочки -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <section id="cure-ptsd" class="scroll-mt-32">
+                <h1 class="text-3xl font-bold text-[#5a2d4a] mb-6">Шляхи лікування ПТСР</h1>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    Основним і найбільш дієвим підходом до подолання ПТСР є психотерапія, яка в окремих випадках може доповнюватися медикаментозною підтримкою. У процесі відновлення використовується цілий комплекс ефективних інструментів: психоедукація допомагає зрозуміти реакції власної психіки на травму, а техніки заземлення та дихальні вправи дозволяють швидко знизити рівень тривоги й повернути відчуття безпеки. Для глибокої роботи з болісними спогадами застосовують метод EMDR (десенсибілізація та переробка рухом очей) і поступове опрацювання тригерів, щоб зменшити їхній вплив. Елементи позитивної психології допомагають відновити внутрішні опори, знайти ресурси та покращити якість життя.
+                </p>
+            </section>
+
+            <section id="related-problems" class="scroll-mt-32">
+                <h1 class="text-3xl font-bold text-[#5a2d4a] mb-6">Інші проблеми спричинені ПТСР</h1>
+                <p class="text-lg font-light leading-relaxed text-gray-600 mb-4">
+                    Посттравматичний стресовий розлад рідко існує ізольовано і часто тягне за собою низку інших серйозних викликів. Тривале напруження нервової системи може проявлятися через відчуття постійного гніву та раптові вибухи люті, які буває важко контролювати. Часто цей стан супроводжується глибокою депресією та важкими моральними травмами, коли руйнуються звичні цінності або виникає болісне почуття провини. Намагаючись заглушити душевний біль та впоратися з нестерпними емоціями, людина може шукати тимчасового полегшення, що нерідко призводить до алкоголізму чи наркотичної залежності. У найбільш кризових ситуаціях сильне виснаження психіки може викликати думки про суїцид, що є дуже тривожним сигналом і потребує негайного втручання.
+                </p>
+            </section>
+
+            <!-- БЛОК ДЖЕРЕЛ (References) -->
+            <!-- Відділяємо його візуально лінією зверху -->
+            <section class="mt-16 pt-8 border-t border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Джерела інформації</h3>
+                <ul class="space-y-2 text-sm text-gray-500 font-light break-all">
+                    <li>
+                        [1] Міністерство охорони здоров'я України. (2024).
+                        <a href="https://moz.gov.ua/uk/kilkist-pacientiv-zi-vstanovlenim-diagnozom-ptsr-v-ukraini-zrostae-scho-treba-znati-pro-posttravmatichnij-stresovij-rozlad" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                            Кількість пацієнтів зі встановленим діагнозом ПТСР в Україні зростає: що треба знати про посттравматичний стресовий розлад
+                        </a>.
+                    </li>
+                    <!-- Сюди потім зможете додавати інші джерела [2], [3] і т.д. -->
+                </ul>
+            </section>
+
+
+
+
+        </article>
+
+        <aside class="lg:w-1/4 hidden lg:block">
+            <div class="sticky top-32 bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm">
+                <h3 class="text-lg font-bold text-[#5a2d4a] mb-4 border-b border-gray-200 pb-3">
+                    Посттравматичний стресовий розлад
+                </h3>
+
+                <nav class="flex flex-col space-y-3">
+                    <a href="#what-is-ptsd" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Що таке ПТСР?
+                    </a>
+                    <a href="#causes" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Причини ПТСР
+                    </a>
+                    <a href="#symptoms" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Симптоми ПТСР
+                    </a>
+
+                    <a href="#how-common" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Як часто зустрічається ПТСР?
+                    </a>
+
+                    <a href="#ptsd-test" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Чи маю я ПТСР?
+                    </a>
+
+                    <a href="#cure-ptsd" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Шляхи лікування ПТСР
+                    </a>
+
+                    <a href="#related-problems" class="text-sm font-medium text-gray-500 hover:text-[#89b83a] transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                        Інші проблеми спричинені ПТСР
+                    </a>
+
+                </nav>
+            </div>
+        </aside>
+
+    </div>
+{% endblock %}
