@@ -1,12 +1,26 @@
-<header id="main-header" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-6 text-white transition-all duration-500 bg-transparent">
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:register' as register_url %}
+{% url 'core:welcome' as home_url %}
+{% url 'core:ptsdinfo' as ptsdinfo_url %}
+{% url 'accounts:profile' as profile_url %}
+
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 text-white transition-all duration-500
+    {% if request.path == login_url or request.path == register_url or request.path == profile_url or 'password-reset' in request.path %}
+        bg-[#5a2d4a] py-4 shadow-md
+    {% else %}
+        bg-transparent py-6
+    {% endif %}
+">
     <div class="text-center text-2xl font-bold tracking-tighter">Deal with <br>PTSD</div>
     <nav class="space-x-8">
-        <a href="#" class="text-sm font-medium hover:opacity-70 transition-opacity">Знайоство з ПТСР</a>
-        <a href="#" class="text-sm font-medium hover:opacity-70 transition-opacity">Про нас</a>
-        <a href="#" class="text-sm font-medium hover:opacity-70 transition-opacity">Контакти</a>
+        <a href="{{ home_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Головна</a>
+        <a href="{{ ptsdinfo_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Знайомство з ПТСР</a>
+        <a href="{{ login_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Реєстрація/вхід</a>
+        <a href="{{ profile_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Мій профіль</a>
     </nav>
 </header>
 
+{% if request.path != login_url and request.path != register_url and request.path != profile_url and 'password-reset' not in request.path %}
 <script>
     const header = document.getElementById('main-header');
 
@@ -20,3 +34,4 @@
         }
     });
 </script>
+{% endif %}

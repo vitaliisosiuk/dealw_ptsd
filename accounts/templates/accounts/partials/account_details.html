@@ -1,0 +1,25 @@
+<div>
+    <div class="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
+        <h2 class="text-xl font-bold text-gray-800">Персональні дані</h2>
+        <button hx-get="{% url 'accounts:edit_details' %}"
+                hx-target="#profile-content"
+                class="px-5 py-2 text-sm font-medium text-[#89b83a] border border-[#89b83a] rounded-lg hover:bg-[#89b83a] hover:text-white transition-all">
+            Редагувати
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Ім'я</p>
+            <p class="text-lg font-light text-gray-800">{{ user.first_name }}</p>
+        </div>
+        <div>
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Прізвище</p>
+            <p class="text-lg font-light text-gray-800">{{ user.last_name }}</p>
+        </div>
+        <div class="md:col-span-2">
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Електронна пошта</p>
+            <p class="text-lg font-light text-gray-800">{{ user.email }}</p>
+        </div>
+    </div>
+</div>

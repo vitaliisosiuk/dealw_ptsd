@@ -1,0 +1,42 @@
+<div>
+    <h2 class="text-xl font-bold text-gray-800 mb-8 border-b border-gray-100 pb-4">Редагування профілю</h2>
+    <form hx-post="{% url 'accounts:update_details' %}" hx-target="#profile-content" class="space-y-5">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Ім'я</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <p class="text-xs text-red-500 mt-1">{{ form.first_name.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Прізвище</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <p class="text-xs text-red-500 mt-1">{{ form.last_name.errors.0 }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Електронна пошта</label>
+            {{ form.email }}
+            <p class="text-xs text-gray-400 mt-2 font-light">Email не можна змінити з міркувань безпеки акаунта.</p>
+        </div>
+
+        <div class="flex items-center gap-4 pt-6">
+            <button type="submit" class="px-6 py-2.5 bg-[#89b83a] text-white font-medium rounded-lg hover:bg-[#7ca833] transition-all shadow-sm">
+                Зберегти зміни
+            </button>
+
+            <button type="button"
+                    hx-get="{% url 'accounts:account_details' %}"
+                    hx-target="#profile-content"
+                    class="px-6 py-2.5 bg-gray-100 text-gray-600 font-medium rounded-lg hover:bg-gray-200 transition-all">
+                Скасувати
+            </button>
+        </div>
+    </form>
+</div>
