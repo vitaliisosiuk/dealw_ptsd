@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block header %}
+    {% include "header.html" with is_transparent=True %}
+{% endblock %}
+
 {% block content %}
     <div class="relative w-full h-screen overflow-hidden">
 
@@ -59,9 +63,6 @@
             <h1 class="text-8xl md:text-6xl font-['Raleway'] font-extralight tracking-widest mb-4 [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
                 Досвід, який залишився з вами
             </h1>
-            <!--        <p class="text-2xl md:text-3xl font-['Raleway'] font-light tracking-wide mt-2 max-w-7xl mx-auto [text-shadow:0_3px_12px_rgba(0,0,0,0.8)]">-->
-            <!--            Ви не повинні нести цей тягар наодинці. Тут зібрано те, що допоможе повернутися до спокійної реальності.-->
-            <!--        </p>-->
         </div>
     </div>
 

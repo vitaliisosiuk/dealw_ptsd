@@ -5,33 +5,38 @@
 {% url 'accounts:profile' as profile_url %}
 
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 text-white transition-all duration-500
-    {% if request.path == login_url or request.path == register_url or request.path == profile_url or 'password-reset' in request.path %}
-        bg-[#5a2d4a] py-4 shadow-md
-    {% else %}
+    {% if is_transparent %}
         bg-transparent py-6
+    {% else %}
+        bg-[#5a2d4a] py-4 shadow-md
     {% endif %}
 ">
     <div class="text-center text-2xl font-bold tracking-tighter">Deal with <br>PTSD</div>
-    <nav class="space-x-8">
+    <nav class="space-x-8 flex items-center">
         <a href="{{ home_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Головна</a>
         <a href="{{ ptsdinfo_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Знайомство з ПТСР</a>
-        <a href="{{ login_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Реєстрація/вхід</a>
-        <a href="{{ profile_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Мій профіль</a>
+
+        <!-- Перевірка авторизації користувача -->
+        {% if user.is_authenticated %}
+            <a href="{{ profile_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Мій профіль</a>
+        {% else %}
+            <a href="{{ login_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Реєстрація/вхід</a>
+        {% endif %}
     </nav>
 </header>
 
-{% if request.path != login_url and request.path != register_url and request.path != profile_url and 'password-reset' not in request.path %}
-<script>
-    const header = document.getElementById('main-header');
+{% if is_transparent %}
+    <script>
+        const header = document.getElementById('main-header');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.remove('bg-transparent', 'py-6');
-            header.classList.add('bg-[#5a2d4a]/80', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
-        } else {
-            header.classList.add('bg-transparent', 'py-6');
-            header.classList.remove('bg-[#5a2d4a]/80', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
-        }
-    });
-</script>
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.remove('bg-transparent', 'py-6');
+                header.classList.add('bg-[#5a2d4a]/80', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
+            } else {
+                header.classList.add('bg-transparent', 'py-6');
+                header.classList.remove('bg-[#5a2d4a]/80', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
+            }
+        });
+    </script>
 {% endif %}

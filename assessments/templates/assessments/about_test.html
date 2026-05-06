@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="bg-gray-50 min-h-screen pt-32 pb-16 sm:pt-40 sm:pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <article class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-[#1c1c1c] px-8 py-12 md:px-16 md:py-16 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
+
+                    <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                        <div class="text-center md:text-left">
+                            <h1 class="text-3xl md:text-5xl font-semibold text-white tracking-wide mb-4">
+                                {{ assessment.title }}
+                            </h1>
+                            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl">
+                                {{ assessment.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-8 py-10 md:px-16 md:py-12">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex flex-col items-center text-center">
+                            <svg class="w-8 h-8 text-[#89b83a] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm text-gray-500 mb-1">Час проходження</span>
+                            <span class="font-semibold text-gray-800">{{ assessment.time_to_complete }}</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex flex-col items-center text-center">
+                            <svg class="w-8 h-8 text-[#89b83a] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                            <span class="text-sm text-gray-500 mb-1">Кількість питань</span>
+                            <span class="font-semibold text-gray-800">{{ assessment.questions_count }} пунктів</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex flex-col items-center text-center">
+                            <svg class="w-8 h-8 text-[#89b83a] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            <span class="text-sm text-gray-500 mb-1">Надійність</span>
+                            <span class="font-semibold text-gray-800">{{ assessment.reliability }}</span>
+                        </div>
+                    </div>
+
+                    <div class="prose prose-lg prose-gray max-w-none text-gray-600 mb-12 leading-relaxed">
+                        {{ assessment.about_text|safe }}
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center pt-8 border-t border-gray-100">
+                        <p class="text-gray-500 mb-6 text-center">Натисніть кнопку нижче, щоб розпочати тестування. Ваші відповіді залишаться конфіденційними.</p>
+
+                        <a href="{% url 'assessments:take-test' test_slug=assessment.short_name %}" class="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-medium text-white bg-[#89b83a] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[#7ca833] hover:shadow-[0_8px_25px_-8px_rgba(137,184,58,0.6)] hover:-translate-y-1">
+                            <span class="mr-3">Пройти тест зараз</span>
+                            <svg class="w-6 h-6 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+{% endblock %}

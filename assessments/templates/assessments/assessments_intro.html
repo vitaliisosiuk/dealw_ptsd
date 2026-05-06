@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+    {% include "header.html" with is_transparent=True %}
+{% endblock %}
+
+{% block content %}
+    <div class="relative w-full h-screen overflow-hidden">
+
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="{% static "assessments/video/180427-864255778.mp4" %}" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-['Raleway'] font-light tracking-wide mb-6">
+                Тест на виявлення ПТСР та інших можливих розладів:
+            </h1>
+            <p class="text-lg md:text-2xl font-['Raleway'] font-extralight max-w-2xl px-4 tracking-wider opacity-90">
+                Сучасні методи діагностування
+            </p>
+        </div>
+    </div>
+
+    <section class="bg-gray-50 min-h-screen py-12">
+        <div class="text-center mb-16 px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-gray-600 leading-relaxed tracking-wide max-w-4xl mx-auto">
+                Доступні опитувальники
+            </h2>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-8">
+            {% for test in tests %}
+                <article onclick="window.location.href='{{ test.url }}'" class="w-full max-w-[380px] group bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+
+                    <div class="w-24 h-24 mb-6 flex items-center justify-center">
+                        <img src="{% static test.icon %}" alt="{{ test.alt }}" class="object-contain w-full h-full">
+                    </div>
+
+                    <h3 class="text-xl font-bold text-gray-700 mb-4 h-14 flex items-center justify-center">
+                        {{ test.title|safe }}
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mb-8 flex-grow">
+                        {{ test.description }}
+                    </p>
+
+                    <a href="{{ test.url }}" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-[#89b83a] rounded-lg shadow-sm transition-all duration-300 transform group-hover:bg-[#7ca833] group-hover:shadow-md group-hover:-translate-y-0.5">
+                        Пройти тест
+                        <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class="relative w-full h-[80vh] overflow-hidden">
+        <img src="{% static "assessments/images/plannin_pic.jpg" %}" alt="Досвід, який залишається з нами" class="absolute inset-0 w-full h-full object-cover object-top z-0">
+
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-8xl md:text-6xl font-['Raleway'] font-extralight tracking-widest mb-4 [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
+                Ви не зобов’язані здогадуватись. Тест допоможе розібратись
+            </h1>
+        </div>
+    </div>
+
+    <section class="bg-white py-16 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-light text-gray-700 tracking-wide">
+                    Важлива інформація перед початком
+                </h2>
+                <div class="w-24 h-1 bg-[#89b83a] mx-auto mt-4 rounded-full opacity-80"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-6 text-[#89b83a] shadow-sm border border-green-100">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Повна конфіденційність</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-sm">
+                        Ми поважаємо ваш особистий простір. Жодні ваші відповіді чи результати не передаються третім особам.
+                    </p>
+                </div>
+
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 text-blue-500 shadow-sm border border-blue-100">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Наукова обґрунтованість</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-sm">
+                        Ці опитувальники є стандартизованими інструментами, що розроблені провідними фахівцями і використовуються у світовій психіатричній практиці.
+                    </p>
+                </div>
+
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-6 text-red-400 shadow-sm border border-red-100">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Не є медичним діагнозом</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-sm">
+                        Результати тестування мають <span class="font-medium text-gray-700">виключно інформаційний характер</span>. Вони не замінюють професійну консультацію та встановлення діагнозу кваліфікованим лікарем.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-gray-100 text-center">
+                <p class="text-gray-500 text-sm mb-3">
+                    Якщо ви відчуваєте гострий кризовий стан або потребуєте підтримки просто зараз, будь ласка, зверніться до спеціалістів.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
