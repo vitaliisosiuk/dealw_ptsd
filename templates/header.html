@@ -1,3 +1,5 @@
+{% load static %}
+
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:register' as register_url %}
 {% url 'core:welcome' as home_url %}
@@ -11,12 +13,18 @@
         bg-[#5a2d4a] py-4 shadow-md
     {% endif %}
 ">
-    <div class="text-center text-2xl font-bold tracking-tighter">Deal with <br>PTSD</div>
+    <a href="{{ home_url }}" class="flex items-center gap-1 hover:opacity-90 transition-opacity">
+        <div class="text-left text-xl md:text-2xl font-bold tracking-tighter leading-none">
+            Deal <br>with <br>PTSD
+        </div>
+        <img src="{% static 'core/images/logo.png' %}" alt="Лого" class="w-14 h-14 md:w-16 md:h-16 object-contain">
+
+
+    </a>
     <nav class="space-x-8 flex items-center">
         <a href="{{ home_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Головна</a>
         <a href="{{ ptsdinfo_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Знайомство з ПТСР</a>
 
-        <!-- Перевірка авторизації користувача -->
         {% if user.is_authenticated %}
             <a href="{{ profile_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Мій профіль</a>
         {% else %}

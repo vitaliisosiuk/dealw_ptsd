@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}
+    Усі тести
+{% endblock %}
+
 {% block header %}
     {% include "header.html" with is_transparent=True %}
 {% endblock %}
@@ -58,15 +62,19 @@
         </div>
     </section>
 
-    <div class="relative w-full h-[80vh] overflow-hidden">
-        <img src="{% static "assessments/images/plannin_pic.jpg" %}" alt="Досвід, який залишається з нами" class="absolute inset-0 w-full h-full object-cover object-top z-0">
+    <div class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+        <img src="{% static 'assessments/images/plannin_pic.jpg' %}"
+             alt="Досвід, який залишається з нами"
+             class="absolute inset-0 w-full h-full object-cover object-top z-0">
 
         <div class="absolute inset-0 bg-black/60 z-10"></div>
 
-        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
-            <h1 class="text-8xl md:text-6xl font-['Raleway'] font-extralight tracking-widest mb-4 [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
-                Ви не зобов’язані здогадуватись. Тест допоможе розібратись
-            </h1>
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6">
+            <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6">
+                <h1 class="text-4xl sm:text-5xl md:text-8xl font-['Raleway'] font-extralight tracking-widest leading-tight [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
+                    Ви не зобов’язані здогадуватись.Тест допоможе розібратись
+                </h1>
+            </div>
         </div>
     </div>
 

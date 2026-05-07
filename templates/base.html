@@ -1,13 +1,15 @@
 {% load tailwind_tags %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Deal with PTSD</title>
+    <title>{% block title %}Deal with PTSD{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
     {% tailwind_css %}
+    <link rel="icon" type="image/png" href="{% static 'core/images/logo.png' %}">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans antialiased" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>

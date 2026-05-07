@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}
+	Головна
+{% endblock %}
+
 {% block header %}
     {% include "header.html" with is_transparent=True %}
 {% endblock %}
@@ -27,13 +31,13 @@
     <div class="flex flex-col items-center w-full bg-[#1a1a1a] px-10 py-16">
         <div class="flex flex-wrap md:flex-nowrap gap-10 justify-center items-start w-full max-w-7xl">
 
-            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+            <a href="{% url 'assessments:all-tests' %}" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
                 <img src="{% static "core/images/pass_test.png" %}" alt="Тест" class="w-full aspect-square object-cover mb-6">
                 <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Пройти тест</h3>
                 <p class="text-gray-400 text-lg font-light tracking-wider">Чи маю я ПТСР?</p>
             </a>
 
-            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+            <a href="{% url 'core:self-help' %}" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
                 <img src="{% static "core/images/self_help.png" %}" alt="Техніки" class="w-full aspect-square object-cover mb-6">
                 <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Техніки самодопомоги</h3>
                 <p class="text-gray-400 text-lg font-light tracking-wider">Дихальні практики та інші поради</p>
@@ -45,7 +49,7 @@
                 <p class="text-gray-400 text-lg font-light tracking-wider">Щоденник самопочуття</p>
             </a>
 
-            <a href="#" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
+            <a href="{% url 'core:books' %}" class="flex flex-col items-center text-center w-full md:w-1/4 transition-transform hover:scale-105 hover:opacity-80">
                 <img src="{% static "core/images/e_books.png" %}" alt="Книги" class="w-full aspect-square object-cover mb-6">
                 <h3 class="text-gray-300 text-xs font-medium tracking-[0.2em] uppercase mb-2">Книги</h3>
                 <p class="text-gray-400 text-lg font-light tracking-wider">Електронна бібліотека для ветеранів</p>
@@ -54,13 +58,15 @@
         </div>
     </div>
 
-    <div class="relative w-full h-[80vh] overflow-hidden">
-        <img src="{% static "core/images/main_pic.jpg" %}" alt="Досвід, який залишається з нами" class="absolute inset-0 w-full h-full object-cover object-top z-0">
+    <div class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+        <img src="{% static 'core/images/main_pic.jpg' %}"
+             alt="Досвід, який залишається з нами"
+             class="absolute inset-0 w-full h-full object-cover object-top z-0">
 
         <div class="absolute inset-0 bg-black/60 z-10"></div>
 
-        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
-            <h1 class="text-8xl md:text-6xl font-['Raleway'] font-extralight tracking-widest mb-4 [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6">
+            <h1 class="text-4xl sm:text-5xl md:text-8xl font-['Raleway'] font-extralight tracking-widest leading-tight [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
                 Досвід, який залишився з вами
             </h1>
         </div>

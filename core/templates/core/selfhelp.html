@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Техіки самодопомоги
+{% endblock %}
+
+{% block header %}
+    {% include "header.html" with is_transparent=True %}
+{% endblock %}
+
+{% block content %}
+    <div class="relative w-full h-screen overflow-hidden">
+
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="{% static "core/video/grounding.mp4" %}" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-['Raleway'] font-light tracking-wide mb-6">
+                Техніки самодопомоги для ментального відновлення
+            </h1>
+            <p class="text-lg md:text-2xl font-['Raleway'] font-extralight max-w-2xl px-4 tracking-wider opacity-90">
+                Дихальні практики, релаксація та вправи заземлення для зниження тривоги
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-slate-50 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl md:text-4xl font-['Raleway'] font-medium text-slate-800 mb-4">
+                    Швидка допомога для вашої нервової системи
+                </h2>
+                <p class="text-lg text-slate-600 font-light leading-relaxed">
+                    Ці техніки розроблені на основі когнітивно-поведінкової терапії (КПТ) та фізіології стресу. Вони не потребують спеціального обладнання і допомагають повернути контроль над тілом та емоціями у моменти гострої тривоги, панічних атак або надмірного стресу.
+                </p>
+            </div>
+
+            <section class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-['Raleway'] font-semibold text-slate-800 mb-4 border-b pb-2 border-slate-200">
+                    Техніки заземлення (Grounding)
+                </h3>
+                <p class="text-slate-700 leading-relaxed mb-4">
+                    Заземлення перемикає фокус уваги з внутрішніх переживань (нав'язливих думок, страху) на зовнішню реальність. Це своєрідний "якір", який сигналізує мозку, що ви знаходитесь у безпеці тут і зараз.
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                    <h4 class="text-xl font-medium text-slate-800 mb-3">Метод «5-4-3-2-1»</h4>
+                    <p class="text-slate-600 mb-4">Уважно озирніться навколо та знайдіть:</p>
+                    <ul class="space-y-3 text-slate-700">
+                        <li class="flex items-start">
+                            <span class="font-bold text-slate-900 mr-2">5</span>
+                            <span><strong>речей, які ви бачите:</strong> зверніть увагу на дрібні деталі, кольори, текстури (наприклад, візерунок на шпалерах, тінь від столу).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-slate-900 mr-2">4</span>
+                            <span><strong>речі, які ви можете відчути на дотик:</strong> температура поверхні, фактура одягу, вага предмету в руці.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-slate-900 mr-2">3</span>
+                            <span><strong>звуки, які ви чуєте:</strong> прислухайтеся до фонового шуму (гудіння холодильника, шум вітру, кроки на вулиці).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-slate-900 mr-2">2</span>
+                            <span><strong>запахи, які ви відчуваєте:</strong> запах кави, мила або просто свіжого повітря.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-slate-900 mr-2">1</span>
+                            <span><strong>річ, яку ви можете спробувати на смак:</strong> зробіть ковток води, візьміть льодяник.</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-['Raleway'] font-semibold text-slate-800 mb-4 border-b pb-2 border-slate-200">
+                    Дихальні практики
+                </h3>
+                <p class="text-slate-700 leading-relaxed mb-4">
+                    Під час стресу дихання стає поверхневим і прискореним. Свідоме уповільнення дихання активує парасимпатичну нервову систему, яка фізично знижує частоту серцевих скорочень та розслабляє тіло.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h4 class="text-xl font-medium text-slate-800 mb-3">Квадратне дихання</h4>
+                        <p class="text-slate-600 mb-4">Нормалізує ритм серця та знімає м'язовий спазм.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-slate-700">
+                            <li>Вдих через ніс (рахуйте до 4).</li>
+                            <li>Затримка дихання (рахуйте до 4).</li>
+                            <li>Повільний видих через рот (рахуйте до 4).</li>
+                            <li>Затримка дихання перед новим вдихом (рахуйте до 4).</li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h4 class="text-xl font-medium text-slate-800 mb-3">Дихання «4-7-8»</h4>
+                        <p class="text-slate-600 mb-4">Ефективна техніка для боротьби з безсонням та гострою панікою.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-slate-700">
+                            <li>Спокійний вдих через ніс на 4 рахунки.</li>
+                            <li>Затримка дихання на 7 рахунків.</li>
+                            <li>Гучний і довгий видих через рот на 8 рахунків.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="text-2xl md:text-3xl font-['Raleway'] font-semibold text-slate-800 mb-4 border-b pb-2 border-slate-200">
+                    Прогресивна м'язова релаксація
+                </h3>
+                <p class="text-slate-700 leading-relaxed mb-4">
+                    Стрес змушує наші м'язи рефлекторно напружуватися (реакція «бий або біжи»). Метод Едмунда Джекобсона полягає у свідомому чергуванні сильного напруження та різкого розслаблення різних груп м'язів. Мозок фіксує контраст, і тіло розслабляється глибше, ніж до початку вправи.
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                    <h4 class="text-xl font-medium text-slate-800 mb-3">Базовий алгоритм виконання:</h4>
+                    <p class="text-slate-700 mb-4">
+                        Сядьте зручно, заплющіть очі. Працюйте з кожною групою м'язів послідовно (рухаючись зверху вниз або знизу вверх):
+                    </p>
+                    <ul class="list-none space-y-4 text-slate-700">
+                        <li class="pl-4 border-l-4 border-indigo-400">
+                            <strong>Крок 1 (Напруження):</strong> Максимально сильно напружте певну групу м'язів (наприклад, стисніть кулаки або зажмурте очі). Утримуйте напругу <strong>5-7 секунд</strong>. Відчуйте цей дискомфорт.
+                        </li>
+                        <li class="pl-4 border-l-4 border-emerald-400">
+                            <strong>Крок 2 (Розслаблення):</strong> Різко відпустіть напругу. Видихніть.
+                        </li>
+                        <li class="pl-4 border-l-4 border-slate-300">
+                            <strong>Крок 3 (Усвідомлення):</strong> Сконцентруйтеся на відчутті тепла, важкості або поколювання в розслаблених м'язах протягом <strong>15-20 секунд</strong> перед переходом до наступної зони.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+
+    <div class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+        <img src="{% static 'core/images/techniques4.jpg' %}"
+             alt="Досвід, який залишається з нами"
+             class="absolute inset-0 w-full h-full object-cover object-top z-0">
+
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6">
+            <h1 class="text-4xl sm:text-5xl md:text-8xl font-['Raleway'] font-extralight tracking-widest leading-tight [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
+                Перегляньте відео з виконанням для кращого розуміння
+            </h1>
+        </div>
+    </div>
+
+    <div class="bg-slate-50 py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-['Raleway'] font-medium text-slate-800 mb-4">
+                    Відеоінструкції до практик
+                </h2>
+                <p class="text-lg text-slate-600 font-light">
+                    Виконуйте вправи разом з нами для досягнення найкращого результату
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+                    <div class="relative w-full aspect-video mb-5 bg-slate-200 rounded-lg overflow-hidden">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="{% static 'core/video/54321guide.mp4' %}" type="video/mp4">
+                            Ваш браузер не підтримує відтворення відео.
+                        </video>
+                    </div>
+                    <h3 class="text-2xl font-['Raleway'] font-semibold text-slate-800 mb-3">
+                        Техніка «5-4-3-2-1»
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed flex-grow">
+                        Детальна відеоінструкція, яка допоможе вам крок за кроком переключити фокус уваги на навколишнє середовище. Використовуйте це відео під час нападів паніки або сильної тривоги, щоб повернути відчуття реальності.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+                    <div class="relative w-full aspect-video mb-5 bg-slate-200 rounded-lg overflow-hidden">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="{% static 'core/video/grounding_guide.mp4' %}" type="video/mp4">
+                            Ваш браузер не підтримує відтворення відео.
+                        </video>
+                    </div>
+                    <h3 class="text-2xl font-['Raleway'] font-semibold text-slate-800 mb-3">
+                        Техніка заземлення
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed flex-grow">
+                        Практика, яка допомагає повернути відчуття контролю та зменшити тривогу під час сильного стресу або флешбеків. Спробуйте зосередитися на навколишніх звуках, предметах і власному диханні, щоб поступово повернутися в теперішній момент і стабілізувати емоційний стан.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+                    <div class="relative w-full aspect-video mb-5 bg-slate-200 rounded-lg overflow-hidden">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="{% static 'core/video/breathing_guide.mp4' %}" type="video/mp4">
+                            Ваш браузер не підтримує відтворення відео.
+                        </video>
+                    </div>
+                    <h3 class="text-2xl font-['Raleway'] font-semibold text-slate-800 mb-3">
+                        Дихальна практика
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed flex-grow">
+                        Ця техніка є природним транквілізатором для нервової системи. У відео показано правильну техніку виконання глибокого видиху, яка є ключовою для підготовки до сну або зняття гострого стресу.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+                    <div class="relative w-full aspect-video mb-5 bg-slate-200 rounded-lg overflow-hidden">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="{% static 'core/video/mussclerelaxation_guide.mp4' %}" type="video/mp4">
+                            Ваш браузер не підтримує відтворення відео.
+                        </video>
+                    </div>
+                    <h3 class="text-2xl font-['Raleway'] font-semibold text-slate-800 mb-3">
+                        Прогресивна м'язова релаксація
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed flex-grow">
+                        Повний цикл роботи з тілом за методом Джекобсона. Повторюйте за інструктором: ми пройдемо всі групи м'язів від обличчя до кінчиків пальців ніг, чергуючи сильне напруження та глибоке розслаблення.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

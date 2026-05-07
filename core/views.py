@@ -7,3 +7,9 @@ def welcome_page(request):
 
 def ptsd_info(request):
     return render(request, "core/ptsdinfo.html")
+
+def books(request):
+    return render(request, "core/downloadbooks.html")
+
+def selfhelp(request):
+    return render(request, "core/selfhelp.html")
