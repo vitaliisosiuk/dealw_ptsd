@@ -15,4 +15,7 @@ env/
 .env.local
 .idea/
 
+# Large media assets (keep out of git)
+core/static/core/video/*.mp4
+
 
