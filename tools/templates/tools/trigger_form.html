@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Картування тригера{% endblock %}
+
+{% block content %}
+    <div class="bg-slate-50 min-h-screen pt-36 md:pt-40 pb-24">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <form method="POST" id="trigger-form" class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-slate-100">
+                {% csrf_token %}
+
+                <div id="step-1" class="step-content">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Що стало тригером?</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                        {% for trigger in triggers %}
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="triggers" value="{{ trigger.id }}" class="peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-100 text-slate-700 hover:border-[#89b83a] hover:bg-[#89b83a]/10 peer-checked:border-[#89b83a] peer-checked:bg-[#89b83a] peer-checked:text-white transition-all duration-200">
+                                    {{ trigger.name }}
+                                </div>
+                            </label>
+                        {% endfor %}
+                    </div>
+                    <input type="text" name="custom_trigger" placeholder="Або впишіть свій варіант..." class="w-full p-3 border border-slate-200 rounded-xl mb-6 focus:outline-none focus:border-[#89b83a] focus:ring-1 focus:ring-[#89b83a]">
+
+                    <div class="flex justify-end">
+                        <button type="button" onclick="nextStep(2)" class="px-6 py-3 bg-[#89b83a] text-white rounded-xl hover:bg-[#76a030] transition-colors">Далі</button>
+                    </div>
+                </div>
+
+                <div id="step-2" class="step-content hidden">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Наскільки сильним був дистрес?</h2>
+                    <p class="mb-6 text-slate-500">Від 0 (Спокійно) до 100 (Нестерпно)</p>
+                    <input type="range" name="distress_level" min="0" max="100" value="50" class="w-full mb-8 accent-[#89b83a]" oninput="document.getElementById('distress-val').innerText = this.value">
+                    <div class="text-center text-3xl font-bold text-[#5a2d4a] mb-8"><span id="distress-val">50</span>/100</div>
+
+                    <div class="flex gap-3">
+                        <button type="button" onclick="nextStep(1)" class="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl hover:bg-slate-300 transition-colors">Назад</button>
+                        <button type="button" onclick="nextStep(3)" class="px-6 py-3 bg-[#89b83a] text-white rounded-xl hover:bg-[#76a030] transition-colors">Далі</button>
+                    </div>
+                </div>
+
+                <div id="step-3" class="step-content hidden">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Негайні реакції</h2>
+                    <p class="mb-6 text-slate-500">Що відбувалося в перші хвилини?</p>
+
+                    <h3 class="font-bold mb-3 text-slate-700">Фізичні</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {% for r in physical_reactions %}
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="immediate_reactions" value="{{ r.id }}" class="peer sr-only">
+                                <div class="px-4 py-2 rounded-full border border-slate-200 text-slate-700 hover:border-[#89b83a] hover:bg-[#89b83a]/10 peer-checked:bg-[#89b83a] peer-checked:border-[#89b83a] peer-checked:text-white transition-all duration-200">{{ r.name }}</div>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    <h3 class="font-bold mb-3 text-slate-700">Емоційні</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {% for r in emotional_reactions %}
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="immediate_reactions" value="{{ r.id }}" class="peer sr-only">
+                                <div class="px-4 py-2 rounded-full border border-slate-200 text-slate-700 hover:border-[#89b83a] hover:bg-[#89b83a]/10 peer-checked:bg-[#89b83a] peer-checked:border-[#89b83a] peer-checked:text-white transition-all duration-200">{{ r.name }}</div>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    <h3 class="font-bold mb-3 text-slate-700">Думки</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {% for r in thinking_reactions %}
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="immediate_reactions" value="{{ r.id }}" class="peer sr-only">
+                                <div class="px-4 py-2 rounded-full border border-slate-200 text-slate-700 hover:border-[#89b83a] hover:bg-[#89b83a]/10 peer-checked:bg-[#89b83a] peer-checked:border-[#89b83a] peer-checked:text-white transition-all duration-200">{{ r.name }}</div>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    <h3 class="font-bold mb-3 text-slate-700">Дії</h3>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        {% for r in action_reactions %}
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="immediate_reactions" value="{{ r.id }}" class="peer sr-only">
+                                <div class="px-4 py-2 rounded-full border border-slate-200 text-slate-700 hover:border-[#89b83a] hover:bg-[#89b83a]/10 peer-checked:bg-[#89b83a] peer-checked:border-[#89b83a] peer-checked:text-white transition-all duration-200">{{ r.name }}</div>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button type="button" onclick="nextStep(2)" class="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl hover:bg-slate-300 transition-colors">Назад</button>
+                        <button type="button" onclick="nextStep(4)" class="px-6 py-3 bg-[#89b83a] text-white rounded-xl hover:bg-[#76a030] transition-colors">Далі</button>
+                    </div>
+                </div>
+
+                <div id="step-4" class="step-content hidden">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Контекст</h2>
+                    <p class="mb-6 text-slate-500">Що передувало тригеру?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                        {% for ctx in contexts %}
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="contexts" value="{{ ctx.id }}" class="peer sr-only">
+                                <div class="p-4 rounded-xl border-2 border-slate-100 text-slate-700 hover:border-[#89b83a] hover:bg-[#89b83a]/10 peer-checked:border-[#89b83a] peer-checked:bg-[#89b83a] peer-checked:text-white transition-all duration-200">
+                                    {{ ctx.name }}
+                                </div>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    <input type="text" name="custom_context" placeholder="Або впишіть свій варіант..." class="w-full p-3 border border-slate-200 rounded-xl mb-8 focus:outline-none focus:border-[#89b83a] focus:ring-1 focus:ring-[#89b83a]">
+
+                    <div class="flex gap-3">
+                        <button type="button" onclick="nextStep(3)" class="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl hover:bg-slate-300 transition-colors">Назад</button>
+                        <button type="submit" class="px-6 py-3 bg-[#89b83a] text-white font-bold rounded-xl shadow-lg hover:bg-[#76a030] transition-colors">Зберегти та переглянути звіт</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            // Ховаємо всі кроки
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            // Показуємо потрібний крок
+            document.getElementById('step-' + stepNumber).classList.remove('hidden');
+            // Скролимо наверх форми
+            document.getElementById('trigger-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+{% endblock %}

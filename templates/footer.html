@@ -1,12 +1,19 @@
+{% load static %}
+
 <footer class="w-full bg-[#5a2d4a] text-gray-400 py-20 px-6 border-t border-gray-800">
     <div class="max-w-7xl mx-auto">
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 
             <div class="flex flex-col gap-6">
-                <div class="text-white text-xl font-bold tracking-widest uppercase">
-                    Мій Логотип
-                </div>
+                <a href="{{ home_url }}" class="flex items-center gap-1 hover:opacity-90 transition-opacity">
+                    <div class="text-left text-xl md:text-2xl font-bold tracking-tighter leading-none">
+                        Deal <br>with <br>PTSD
+                    </div>
+                    <img src="{% static 'core/images/logo.png' %}" alt="Лого" class="w-14 h-14 md:w-16 md:h-16 object-contain">
+
+
+                </a>
                 <p class="text-sm font-light leading-relaxed opacity-80">
                     Платформа створена для підтримки ментального здоров'я ветеранів. Ми віримо, що кожен заслуговує на мирне майбутнє після служби.
                 </p>

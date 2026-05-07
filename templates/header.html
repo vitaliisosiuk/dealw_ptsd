@@ -24,7 +24,7 @@
     <nav class="space-x-8 flex items-center">
         <a href="{{ home_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Головна</a>
         <a href="{{ ptsdinfo_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Знайомство з ПТСР</a>
-
+        <a href="{% url 'core:books' %}" class="text-sm font-medium hover:opacity-70 transition-opacity">Електронна бібліотека</a>
         {% if user.is_authenticated %}
             <a href="{{ profile_url }}" class="text-sm font-medium hover:opacity-70 transition-opacity">Мій профіль</a>
         {% else %}

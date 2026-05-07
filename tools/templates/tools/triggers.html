@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Опрацювання тригерів
+{% endblock %}
+
+{% block header %}
+    {% include "header.html" with is_transparent=True %}
+{% endblock %}
+
+{% block content %}
+    <div class="relative w-full h-screen overflow-hidden">
+
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="{% static 'video/boots.mp4' %}" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-['Raleway'] font-light tracking-wide mb-6">
+                Контроль та опрацювання тригерів
+            </h1>
+            <p class="text-lg md:text-2xl font-['Raleway'] font-extralight max-w-2xl px-4 tracking-wider opacity-90">
+                Навчіться розпізнавати власні тригери, контролювати емоційні реакції та
+                зменшувати вплив травматичного досвіду на повсякденне життя
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-slate-50 py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="mb-16 text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-['Raleway'] font-semibold text-slate-800 mb-6">
+                    Чому важливо працювати з тригерами?
+                </h2>
+                <p class="text-lg text-slate-600 font-light leading-relaxed">
+                    Формування гострих реакцій на нагадування про травматичну подію є одним із головних факторів, що ускладнюють перебіг посттравматичного розладу.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-['Raleway'] font-semibold text-slate-800 mb-4">
+                        Хибна тривога нервової системи
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm flex-grow">
+                        Тригерами виступають різноманітні стимули (специфічні звуки, запахи, візуальні образи, локації або тілесні відчуття), які психіка міцно зв'язала з моментом пережитої небезпеки. Зіткнення з таким подразником змушує нервову систему реагувати так, ніби загроза існує прямо зараз: раціональне мислення блокується, запускаючи механізм захисту (паніку, агресію або дисоціацію).
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-['Raleway'] font-semibold text-slate-800 mb-4">
+                        Пастка уникнення
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm flex-grow">
+                        Наслідком такої гіперчутливості найчастіше стає глибока уникаюча поведінка. Людина починає штучно звужувати свій життєвий простір, уникаючи розмов, місць чи дій, здатних спровокувати болісний спогад. З часом це не захищає, а навпаки — призводить до соціальної ізоляції та втрати зв'язку з реальністю.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-['Raleway'] font-semibold text-slate-800 mb-4">
+                        Картування та раціоналізація
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm flex-grow">
+                        Опрацювання має на меті розірвати цей рефлекторний зв'язок. Базовим етапом є <strong>систематичне картування</strong> — цілеспрямоване спостереження та фіксація тригерів. Переведення автоматичних реакцій страху у площину раціонального аналізу дозволяє поступово знизити їхню інтенсивність і повернути контроль над поведінкою.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+        <img src="{% static 'images/fielddawn1.jpg' %}"
+             alt="Навчіться вчасно розпізнавати тригери та безпечніше реагувати на стресові ситуації"
+             class="absolute inset-0 w-full h-full object-cover object-top z-0">
+
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6">
+            <h1 class="text-4xl sm:text-5xl md:text-8xl font-['Raleway'] font-extralight tracking-widest leading-tight [text-shadow:0_4px_12px_rgba(0,0,0,0.9)]">
+                Вивчайте свої тригери та вчіться реагувати на стресові ситуації
+            </h1>
+        </div>
+    </div>
+
+    <div class="bg-white py-16 md:py-24 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-indigo-50 mb-8 shadow-sm">
+                <svg class="w-10 h-10 text-[#5a2d4a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-['Raleway'] font-semibold text-slate-800 mb-6">
+                Перейдіть від теорії до практики
+            </h2>
+
+            <p class="text-lg text-slate-600 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+                Розуміння механізму — це лише перший крок. Скористайтеся нашим інтерактивним бланком для глибокого аналізу. Інструмент допоможе вам безпечно зафіксувати подію, оцінити рівень дискомфорту та розкласти на складові ваші негайні, короткострокові та довгострокові реакції.
+            </p>
+
+            <a href="{% url 'tools:trigger_map' %}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white transition-all duration-300 bg-[#89b83a] rounded-xl hover:bg-[#7ca833] hover:shadow-lg hover:-translate-y-1">
+                Почати картування тригерів
+                <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+
+        </div>
+    </div>
+{% endblock %}
