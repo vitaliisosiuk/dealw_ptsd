@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Інструменти{% endblock %}
+
+{% block header %}
+    {% include "header.html" with is_transparent=False %}
+{% endblock %}
+
+{% block content %}
+    <div class="min-h-screen pt-28 md:pt-32 pb-20 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pointer-events-none absolute -top-10 -left-10 w-56 h-56 bg-emerald-200/40 blur-3xl rounded-full"></div>
+            <div class="pointer-events-none absolute top-10 -right-12 w-64 h-64 bg-indigo-200/40 blur-3xl rounded-full"></div>
+
+            <div class="mb-10">
+                <div class="text-xs font-semibold tracking-widest uppercase text-slate-500">Reliable web tools</div>
+                <h1 class="mt-2 text-3xl sm:text-4xl font-['Raleway'] font-light tracking-tight text-slate-900">
+                    Інструменти підтримки
+                </h1>
+                <p class="mt-3 text-slate-600 max-w-3xl">
+                    Оберіть інструмент, який підходить саме зараз. Ви можете повертатися сюди в будь-який момент.
+                </p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+                <a href="{% url 'tools:inspirational_cards_info' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5a2d4a]/10 text-[#5a2d4a] text-[11px] font-semibold tracking-widest uppercase">
+                                    Надихаючі картки
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Цитати для заземлення та мотивації
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    Перегортайте короткі нагадування про силу й надію. Зберігайте картку як зображення й повертайтеся до неї пізніше.
+                                </p>
+                            </div>
+
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-200 to-indigo-200 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-slate-700" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7.17 6.17C5.17 7.43 4 9.67 4 12.2c0 2.4 1.5 4.3 3.7 4.3 1.3 0 2.3-.6 2.9-1.5.4-.6.6-1.3.6-2.2 0-1.9-1.1-3.2-2.9-3.2-.2 0-.5 0-.7.1.2-1.3.9-2.4 2-3.2L7.17 6.17Zm10 0c-2 1.26-3.17 3.5-3.17 6.03 0 2.4 1.5 4.3 3.7 4.3 1.3 0 2.3-.6 2.9-1.5.4-.6.6-1.3.6-2.2 0-1.9-1.1-3.2-2.9-3.2-.2 0-.5 0-.7.1.2-1.3.9-2.4 2-3.2l-2.23-.33Z"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-emerald-400 via-indigo-400 to-fuchsia-400"></div>
+                </a>
+
+                <a href="{% url 'tools:triggers' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#89b83a]/10 text-[#76a030] text-[11px] font-semibold tracking-widest uppercase">
+                                    Опрацювання тригерів
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Картування тригерів та реакцій
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    Зрозумійте, що саме запускає реакцію, і зафіксуйте контекст та наслідки. Це допомагає повернути контроль і зменшити інтенсивність відповіді.
+                                </p>
+                            </div>
+
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-[#89b83a]/15 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#5a2d4a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-[#89b83a] via-emerald-400 to-indigo-400"></div>
+                </a>
+
+                <a href="{% url 'core:self-help' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-700 text-[11px] font-semibold tracking-widest uppercase">
+                                    Самодопомога
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Техніки заземлення та дихання
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    Швидкі практики для зниження тривоги: grounding, дихальні вправи, релаксація.
+                                </p>
+                            </div>
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6l4 2"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400"></div>
+                </a>
+
+                <a href="{% url 'assessments:all-tests' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-700 text-[11px] font-semibold tracking-widest uppercase">
+                                    Тести
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Тестування
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    Клінічні опитувальники та тести для первинного розуміння симптомів.
+                                </p>
+                            </div>
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3h6v4H9V3z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 16h6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-amber-400 via-rose-400 to-fuchsia-400"></div>
+                </a>
+
+                <a href="{% url 'core:books' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-700 text-[11px] font-semibold tracking-widest uppercase">
+                                    Бібліотека
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Електронні книги
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    Добірка матеріалів для відновлення та розуміння ПТСР.
+                                </p>
+                            </div>
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400"></div>
+                </a>
+
+                <a href="{% url 'core:ptsdinfo' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/5 text-slate-700 text-[11px] font-semibold tracking-widest uppercase">
+                                    Інформація
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Знайомство з ПТСР
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    База знань: що таке ПТСР, як проявляється та як з ним працювати.
+                                </p>
+                            </div>
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-slate-900/5 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-slate-400 via-indigo-400 to-emerald-400"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Надихаючі картки{% endblock %}
+
+{% block header %}
+    {% include "header.html" with is_transparent=False %}
+{% endblock %}
+
+{% block content %}
+    <div class="min-h-screen pt-28 md:pt-32 pb-20 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pointer-events-none absolute -top-10 -left-10 w-56 h-56 bg-emerald-200/40 blur-3xl rounded-full"></div>
+            <div class="pointer-events-none absolute top-10 -right-12 w-64 h-64 bg-indigo-200/40 blur-3xl rounded-full"></div>
+
+            <div class="relative bg-white/70 backdrop-blur rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+                <div class="p-8 sm:p-12">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5a2d4a]/10 text-[#5a2d4a] text-xs font-semibold tracking-widest uppercase">
+                        Інструмент самодопомоги
+                    </div>
+
+                    <h1 class="mt-6 text-4xl sm:text-5xl font-['Raleway'] font-light tracking-tight text-slate-900">
+                        Надихаючі картки
+                    </h1>
+
+                    <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-3xl">
+                        Влучні слова здатні стати надійною опорою у складний момент: вони допомагають заспокоїтися, відновити фокус та знайти сили рухатися далі.
+                        Переглядайте ці картки у зручному для вас темпі та зберігайте ті цитати, які відгукуються найбільше.
+                    </p>
+
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                        <a href="{% url 'tools:inspirational_cards_view' %}"
+                           class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-[#89b83a] text-white text-lg font-medium shadow-sm hover:shadow-md hover:bg-[#7ca833] transition-all">
+                            Почати
+                            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+
+                        <a href="{% url 'tools:home' %}"
+                           class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white text-slate-700 text-lg font-medium border border-slate-200 hover:bg-slate-50 transition-colors">
+                            Інші інструменти
+                        </a>
+                    </div>
+
+                    <div class="mt-10 grid sm:grid-cols-3 gap-4">
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                            <div class="text-sm font-semibold text-slate-900 mb-1">Для спокою</div>
+                            <div class="text-sm text-slate-600">Допомагає знизити напругу, відволіктися від тривожних думок та зосередитися на моменті «тут і зараз».</div>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                            <div class="text-sm font-semibold text-slate-900 mb-1">Для мотивації</div>
+                            <div class="text-sm text-slate-600">Дає поштовх до дій, нагадує про ваші цілі та допомагає повірити у власні сили.</div>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                            <div class="text-sm font-semibold text-slate-900 mb-1">Для підтримки</div>
+                            <div class="text-sm text-slate-600">Дарує відчуття надійної опори та нагадує, що ви не залишаєтеся наодинці зі своїми переживаннями.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-1 bg-gradient-to-r from-emerald-400 via-indigo-400 to-fuchsia-400"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,8 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import TriggerOption, ReactionOption, ContextOption, TriggerLog, LogReaction, Timeframe, TriggerCategory
+from .models import (
+    TriggerOption,
+    ReactionOption,
+    ContextOption,
+    TriggerLog,
+    LogReaction,
+    Timeframe,
+    TriggerCategory,
+    InspirationalQuote,
+)
 
 # Create your views here.
+
+def tools_home_view(request):
+    return render(request, "tools/tools_home.html")
 
 def triggers_view(request):
     return render(request, "tools/triggers.html")
@@ -56,3 +68,22 @@ def trigger_summary_view(request, log_id):
         'long_term_reactions': log.reactions.filter(timeframe=Timeframe.LONG_TERM).select_related('reaction'),
     }
     return render(request, 'tools/trigger_summary.html', context)
+
+
+def inspirational_cards_info_view(request):
+    return render(request, "tools/inspirational_cards_info.html")
+
+
+def inspirational_cards_view(request):
+    quotes_qs = InspirationalQuote.objects.filter(is_active=True, language="uk").order_by("sort_order", "id")
+    quotes = [{"author": q.author, "text": q.text} for q in quotes_qs]
+
+    if not quotes:
+        quotes = [
+            {
+                "author": "Елен Келлер",
+                "text": "Хоча світ сповнений страждань, він також сповнений подолання їх.",
+            }
+        ]
+
+    return render(request, "tools/inspirational_cards.html", {"quotes": quotes})

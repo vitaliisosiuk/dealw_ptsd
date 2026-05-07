@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TriggerOption, ReactionOption, ContextOption, TriggerLog, LogReaction
+from .models import TriggerOption, ReactionOption, ContextOption, TriggerLog, LogReaction, InspirationalQuote
 
 @admin.register(TriggerOption)
 class TriggerOptionAdmin(admin.ModelAdmin):
@@ -19,7 +19,6 @@ class ContextOptionAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_filter = ('user',)
 
-# Це дозволить бачити реакції прямо всередині запису логу
 class LogReactionInline(admin.TabularInline):
     model = LogReaction
     extra = 0
@@ -31,3 +30,11 @@ class TriggerLogAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'custom_trigger')
     inlines = [LogReactionInline]
     filter_horizontal = ('triggers', 'contexts')
+
+
+@admin.register(InspirationalQuote)
+class InspirationalQuoteAdmin(admin.ModelAdmin):
+    list_display = ("author", "language", "is_active", "sort_order", "created_at")
+    list_filter = ("language", "is_active")
+    search_fields = ("author", "text")
+    ordering = ("sort_order", "id")

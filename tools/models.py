@@ -60,3 +60,18 @@ class LogReaction(models.Model):
 
     def __str__(self):
         return f"{self.reaction.name} - {self.get_timeframe_display()}"
+
+
+class InspirationalQuote(models.Model):
+    author = models.CharField(max_length=255)
+    text = models.TextField()
+    language = models.CharField(max_length=10, default="uk")
+    is_active = models.BooleanField(default=True)
+    sort_order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["sort_order", "id"]
+
+    def __str__(self):
+        return f"{self.author}: {self.text[:60]}"
