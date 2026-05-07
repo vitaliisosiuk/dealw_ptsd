@@ -19,6 +19,3 @@ env/
 core/static/core/video/*guide*.mp4
 
 
-
-# Large guide videos
-core/static/core/video/*guide*.mp4
