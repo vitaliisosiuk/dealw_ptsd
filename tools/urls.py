@@ -10,4 +10,6 @@ urlpatterns = [
     path('triggers/summary/<int:log_id>/', views.trigger_summary_view, name='trigger_summary'),
     path('inspirational-cards/', views.inspirational_cards_info_view, name='inspirational_cards_info'),
     path('inspirational-cards/view/', views.inspirational_cards_view, name='inspirational_cards_view'),
+    path('express-with-art/', views.express_with_art_view, name='express_with_art'),
+    path('meditation/', views.meditation_view, name='meditation'),
 ]

@@ -87,3 +87,11 @@ def inspirational_cards_view(request):
         ]
 
     return render(request, "tools/inspirational_cards.html", {"quotes": quotes})
+
+
+def express_with_art_view(request):
+    return render(request, "tools/express_with_art.html")
+
+
+def meditation_view(request):
+    return render(request, "tools/meditation.html")

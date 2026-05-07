@@ -18,4 +18,5 @@ env/
 # Large media assets (keep out of git)
 core/static/core/video/*guide*.mp4
 
-
+# audio (larg  files)
+static/audio/*
