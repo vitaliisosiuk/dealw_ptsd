@@ -16,6 +16,9 @@ env/
 .idea/
 
 # Large media assets (keep out of git)
-core/static/core/video/*.mp4
+core/static/core/video/*guide*.mp4
 
 
+
+# Large guide videos
+core/static/core/video/*guide*.mp4
