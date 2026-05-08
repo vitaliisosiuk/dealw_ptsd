@@ -9,6 +9,7 @@ from .models import (
     Timeframe,
     TriggerCategory,
     InspirationalQuote,
+    JournalEntry,
 )
 
 # Create your views here.
@@ -95,3 +96,14 @@ def express_with_art_view(request):
 
 def meditation_view(request):
     return render(request, "tools/meditation.html")
+
+
+@login_required
+def journal_view(request):
+    if request.method == "POST":
+        text = (request.POST.get("text") or "").strip()
+        if text:
+            JournalEntry.objects.create(user=request.user, text=text)
+        return redirect("accounts:profile")
+
+    return render(request, "tools/journal.html")

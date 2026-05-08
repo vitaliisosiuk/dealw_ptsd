@@ -1,0 +1,33 @@
+<div class="md:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-fit">
+    <ul class="space-y-4">
+        <li>
+            <a href="{% url 'accounts:profile' %}"
+               class="{% if active_tab == 'profile' %}text-[#89b83a] font-semibold{% else %}text-gray-600 hover:text-[#5a2d4a]{% endif %} transition flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full {% if active_tab == 'profile' %}bg-[#89b83a]{% else %}bg-slate-300{% endif %}"></span>
+                Дані акаунта
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:profile_journal' %}"
+               class="{% if active_tab == 'journal' %}text-[#89b83a] font-semibold{% else %}text-gray-600 hover:text-[#5a2d4a]{% endif %} transition">
+                Мої записи
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:profile_triggers' %}"
+               class="{% if active_tab == 'triggers' %}text-[#89b83a] font-semibold{% else %}text-gray-600 hover:text-[#5a2d4a]{% endif %} transition">
+                Мої тригери
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:profile_tests' %}"
+               class="{% if active_tab == 'tests' %}text-[#89b83a] font-semibold{% else %}text-gray-600 hover:text-[#5a2d4a]{% endif %} transition">
+                Мої тести
+            </a>
+        </li>
+        <li class="pt-4 border-t border-gray-100">
+            <a href="{% url 'accounts:logout' %}" class="text-red-500 hover:text-red-700 transition">Вийти з акаунта</a>
+        </li>
+    </ul>
+</div>
+

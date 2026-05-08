@@ -262,7 +262,7 @@
                                     Медитація
                                 </div>
                                 <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
-                                    Перезавантаження, керована медитація
+                                    Коротка пауза для заземлення
                                 </h3>
                                 <p class="mt-3 text-slate-600 leading-relaxed">
                                     Оберіть тривалість: 1, 5, 10 або 20 хвилин — і просто побудьте з аудіосупроводом.
@@ -285,6 +285,39 @@
                         </div>
                     </div>
                     <div class="h-1 bg-gradient-to-r from-sky-400 via-indigo-400 to-emerald-400"></div>
+                </a>
+
+                <a href="{% url 'tools:journal' %}"
+                   class="group rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all overflow-hidden">
+                    <div class="p-7 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-700 text-[11px] font-semibold tracking-widest uppercase">
+                                    Щоденник
+                                </div>
+                                <h3 class="mt-4 text-2xl font-['Raleway'] font-semibold text-slate-900">
+                                    Трекер стану · Мій щоденник
+                                </h3>
+                                <p class="mt-3 text-slate-600 leading-relaxed">
+                                    Запишіть думки про день. За потреби — відкрийте підказки, щоб легше почати.
+                                </p>
+                            </div>
+
+                            <div class="shrink-0 w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 inline-flex items-center text-[#5a2d4a] font-medium">
+                            Відкрити
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400"></div>
                 </a>
             </div>
         </div>

@@ -12,6 +12,9 @@ urlpatterns = [
 
     # Paths related to profile and HTMX
     path('profile/', views.profile_view, name='profile'),
+    path('profile/journal/', views.profile_journal_view, name='profile_journal'),
+    path('profile/triggers/', views.profile_triggers_view, name='profile_triggers'),
+    path('profile/tests/', views.profile_tests_view, name='profile_tests'),
     path('profile/details/', views.account_details, name='account_details'),
     path('profile/edit/', views.edit_account_details, name='edit_details'),
     path('profile/update/', views.update_account_details, name='update_details'),

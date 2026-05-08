@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    container_name: dealw-ptsd-web
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings
+      SECRET_KEY: dev-secret-key-change-me
+    volumes:
+      - .:/app
+    restart: unless-stopped
+

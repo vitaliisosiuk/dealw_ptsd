@@ -9,12 +9,17 @@ Django==6.0.4
 django-browser-reload==1.21.0
 django-tailwind==4.4.2
 idna==3.13
+iniconfig==2.3.0
 Jinja2==3.1.6
 markdown-it-py==4.0.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
+packaging==26.2
+pluggy==1.6.0
 Pygments==2.20.0
 pytailwindcss==0.3.0
+pytest==9.0.3
+pytest-django==4.12.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 python-slugify==8.0.4

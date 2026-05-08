@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TriggerOption, ReactionOption, ContextOption, TriggerLog, LogReaction, InspirationalQuote
+from .models import TriggerOption, ReactionOption, ContextOption, TriggerLog, LogReaction, InspirationalQuote, JournalEntry
 
 @admin.register(TriggerOption)
 class TriggerOptionAdmin(admin.ModelAdmin):
@@ -38,3 +38,10 @@ class InspirationalQuoteAdmin(admin.ModelAdmin):
     list_filter = ("language", "is_active")
     search_fields = ("author", "text")
     ordering = ("sort_order", "id")
+
+
+@admin.register(JournalEntry)
+class JournalEntryAdmin(admin.ModelAdmin):
+    list_display = ("user", "created_at")
+    search_fields = ("user__email", "text")
+    ordering = ("-created_at",)

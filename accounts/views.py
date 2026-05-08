@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomUserUpdateForm
+from tools.models import TriggerLog, JournalEntry
+from assessments.models import TestResult
 
 def register(request):
     if request.method == 'POST':
@@ -33,7 +35,68 @@ def logout_view(request):
 
 @login_required
 def profile_view(request):
-    return render(request, 'accounts/profile.html', {'user': request.user})
+    return render(request, 'accounts/profile.html', {'user': request.user, 'active_tab': 'profile'})
+
+
+@login_required
+def profile_journal_view(request):
+    sort = request.GET.get('sort', 'newest')
+    ordering = '-created_at' if sort != 'oldest' else 'created_at'
+    journal_entries = JournalEntry.objects.filter(user=request.user).order_by(ordering)
+    return render(
+        request,
+        'accounts/profile_journal.html',
+        {
+            'user': request.user,
+            'active_tab': 'journal',
+            'entries': journal_entries,
+            'selected_sort': sort,
+        },
+    )
+
+
+@login_required
+def profile_triggers_view(request):
+    sort = request.GET.get('sort', 'newest')
+    ordering_map = {
+        'newest': '-created_at',
+        'oldest': 'created_at',
+        'highest': '-distress_level',
+        'lowest': 'distress_level',
+    }
+    trigger_logs = TriggerLog.objects.filter(user=request.user).order_by(ordering_map.get(sort, '-created_at'))
+    return render(
+        request,
+        'accounts/profile_triggers.html',
+        {
+            'user': request.user,
+            'active_tab': 'triggers',
+            'trigger_logs': trigger_logs,
+            'selected_sort': sort,
+        },
+    )
+
+
+@login_required
+def profile_tests_view(request):
+    sort = request.GET.get('sort', 'newest')
+    ordering_map = {
+        'newest': '-created_at',
+        'oldest': 'created_at',
+        'highest': '-total_score',
+        'lowest': 'total_score',
+    }
+    test_results = TestResult.objects.filter(user=request.user).select_related("assessment").order_by(ordering_map.get(sort, '-created_at'))
+    return render(
+        request,
+        'accounts/profile_tests.html',
+        {
+            'user': request.user,
+            'active_tab': 'tests',
+            'test_results': test_results,
+            'selected_sort': sort,
+        },
+    )
 
 
 @login_required

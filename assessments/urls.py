@@ -10,4 +10,5 @@ urlpatterns = [
     path('<slug:test_slug>/', views.about_test, name='about-test'),
     path('<slug:test_slug>/take/', views.take_test, name='take-test'),
     path('<slug:test_slug>/result/', views.test_result, name='test-result'),
+    path('results/<int:result_id>/', views.test_result_detail, name='test-result-detail'),
 ]

@@ -75,3 +75,15 @@ class InspirationalQuote(models.Model):
 
     def __str__(self):
         return f"{self.author}: {self.text[:60]}"
+
+
+class JournalEntry(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="journal_entries")
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user_id} {self.created_at.strftime('%Y-%m-%d')}: {self.text[:40]}"

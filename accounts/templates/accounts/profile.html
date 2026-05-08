@@ -9,24 +9,13 @@
         <h1 class="text-3xl font-bold text-[#5a2d4a] mb-8">Особистий кабінет</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="md:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-fit">
-                <ul class="space-y-4">
-                    <li><a href="#" class="text-[#89b83a] font-semibold flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#89b83a]"></span> Мій профіль</a></li>
-                    <li><a href="#" class="text-gray-500 hover:text-[#5a2d4a] transition">lorem lorem</a></li>
-                    <li><a href="#" class="text-gray-500 hover:text-[#5a2d4a] transition">lorem</a></li>
-                    <li class="pt-4 border-t border-gray-100">
-                        <a href="{% url 'accounts:logout' %}" class="text-red-500 hover:text-red-700 transition">Вийти з акаунта</a>
-                    </li>
-                </ul>
-            </div>
+            {% include "accounts/partials/profile_sidebar.html" with active_tab=active_tab %}
 
-            <!-- Container for HTMX -->
             <div class="md:col-span-3 bg-white p-8 rounded-2xl shadow-sm border border-gray-100" id="profile-content">
                 <div hx-get="{% url 'accounts:account_details' %}" hx-trigger="load">
                     <p class="text-gray-400 animate-pulse">Завантаження даних...</p>
                 </div>
             </div>
-
         </div>
     </div>
 {% endblock content %}

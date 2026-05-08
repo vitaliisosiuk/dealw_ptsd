@@ -2,6 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
 from .models import Assessment, TestResult, Choice, ResultInterpretation
+from django.contrib.auth.decorators import login_required
+
+def _redirect_if_anonymous(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:register')
+    return None
 
 def test_main_view(request):
     assessments = Assessment.objects.all()
@@ -20,6 +26,10 @@ def test_main_view(request):
 
 
 def about_test(request, test_slug):
+    auth_redirect = _redirect_if_anonymous(request)
+    if auth_redirect:
+        return auth_redirect
+
     assessment = get_object_or_404(Assessment, short_name=test_slug)
 
     context = {
@@ -29,6 +39,10 @@ def about_test(request, test_slug):
 
 
 def take_test(request, test_slug):
+    auth_redirect = _redirect_if_anonymous(request)
+    if auth_redirect:
+        return auth_redirect
+
     assessment = get_object_or_404(Assessment, short_name=test_slug)
     questions = assessment.questions.all().order_by('order')
 
@@ -76,6 +90,10 @@ def take_test(request, test_slug):
 
 
 def test_result(request, test_slug):
+    auth_redirect = _redirect_if_anonymous(request)
+    if auth_redirect:
+        return auth_redirect
+
     assessment = get_object_or_404(Assessment, short_name=test_slug)
     total_score = request.session.get(f'test_score_{assessment.short_name}')
     scale_scores = request.session.get(f'test_scale_scores_{assessment.short_name}', {})
@@ -130,6 +148,64 @@ def test_result(request, test_slug):
             'assessment': assessment,
             'is_multiscale': False,
             'score': total_score,
+            'max_score': max_possible_score,
+            'interpretation': interpretation,
+        }
+
+    return render(request, 'assessments/test_result.html', context)
+
+
+@login_required
+def test_result_detail(request, result_id):
+    result = get_object_or_404(TestResult.objects.select_related("assessment"), id=result_id, user=request.user)
+    assessment = result.assessment
+
+    has_scales = assessment.questions.exclude(scale='').exists()
+
+    if has_scales and result.scale_scores:
+        interpretations = []
+        max_scores = {}
+
+        for question in assessment.questions.prefetch_related('choices').all():
+            if question.scale:
+                choices = question.choices.all()
+                if choices:
+                    max_val = max(choice.value for choice in choices)
+                    max_scores[question.scale] = max_scores.get(question.scale, 0) + max_val
+
+        for scale_name, score in (result.scale_scores or {}).items():
+            interp = assessment.interpretations.filter(
+                scale=scale_name,
+                min_score__lte=score,
+                max_score__gte=score
+            ).first()
+
+            if interp:
+                interp.actual_score = score
+                interp.max_scale_score = max_scores.get(scale_name, 0)
+                interpretations.append(interp)
+
+        context = {
+            'assessment': assessment,
+            'is_multiscale': True,
+            'interpretations': interpretations,
+        }
+    else:
+        interpretation = assessment.interpretations.filter(
+            min_score__lte=result.total_score,
+            max_score__gte=result.total_score
+        ).first()
+
+        max_possible_score = 0
+        for question in assessment.questions.prefetch_related('choices').all():
+            choices = question.choices.all()
+            if choices:
+                max_possible_score += max(choice.value for choice in choices)
+
+        context = {
+            'assessment': assessment,
+            'is_multiscale': False,
+            'score': result.total_score,
             'max_score': max_possible_score,
             'interpretation': interpretation,
         }

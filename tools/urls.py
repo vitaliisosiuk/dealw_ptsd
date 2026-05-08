@@ -12,4 +12,5 @@ urlpatterns = [
     path('inspirational-cards/view/', views.inspirational_cards_view, name='inspirational_cards_view'),
     path('express-with-art/', views.express_with_art_view, name='express_with_art'),
     path('meditation/', views.meditation_view, name='meditation'),
+    path('journal/', views.journal_view, name='journal'),
 ]
