@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from .models import (
     TriggerOption,
     ReactionOption,
@@ -10,18 +11,20 @@ from .models import (
     TriggerCategory,
     InspirationalQuote,
     JournalEntry,
+    GettingOutOfHouseCard,
 )
 
-# Create your views here.
-
 def tools_home_view(request):
+    """Render the tools landing page."""
     return render(request, "tools/tools_home.html")
 
 def triggers_view(request):
+    """Render the trigger mapping intro page."""
     return render(request, "tools/triggers.html")
 
 @login_required
 def trigger_mapping_view(request):
+    """Handle trigger mapping form submit and rendering."""
     if request.method == 'POST':
         distress_level = request.POST.get('distress_level', 0)
         log = TriggerLog.objects.create(
@@ -60,6 +63,7 @@ def trigger_mapping_view(request):
 
 @login_required
 def trigger_summary_view(request, log_id):
+    """Show a single trigger mapping summary for the current user."""
     log = get_object_or_404(TriggerLog, id=log_id, user=request.user)
 
     context = {
@@ -72,10 +76,12 @@ def trigger_summary_view(request, log_id):
 
 
 def inspirational_cards_info_view(request):
+    """Render the inspirational cards intro page."""
     return render(request, "tools/inspirational_cards_info.html")
 
 
 def inspirational_cards_view(request):
+    """Render active inspirational quotes in card format."""
     quotes_qs = InspirationalQuote.objects.filter(is_active=True, language="uk").order_by("sort_order", "id")
     quotes = [{"author": q.author, "text": q.text} for q in quotes_qs]
 
@@ -91,15 +97,18 @@ def inspirational_cards_view(request):
 
 
 def express_with_art_view(request):
+    """Render browser-based expressive drawing tool."""
     return render(request, "tools/express_with_art.html")
 
 
 def meditation_view(request):
+    """Render short meditation player page."""
     return render(request, "tools/meditation.html")
 
 
 @login_required
 def journal_view(request):
+    """Handle journal entry creation and show the journal screen."""
     if request.method == "POST":
         text = (request.POST.get("text") or "").strip()
         if text:
@@ -107,3 +116,18 @@ def journal_view(request):
         return redirect("accounts:profile")
 
     return render(request, "tools/journal.html")
+
+
+def getting_out_of_house_view(request):
+    """Render the 'Getting out of house' carousel tool."""
+    cards = list(
+        GettingOutOfHouseCard.objects.filter(is_active=True)
+        .order_by("sort_order", "id")
+        .values("title", "description", "image", "image_url", "why_it_helps")
+    )
+    for card in cards:
+        image_name = card.pop("image", "")
+        card["display_image_url"] = image_name and f"{settings.MEDIA_URL}{image_name}" or card["image_url"]
+        fallback_seed = card["title"].replace(" ", "-").lower()
+        card["fallback_image_url"] = f"https://picsum.photos/seed/{fallback_seed}/900/1200"
+    return render(request, "tools/getting_out_of_house.html", {"cards": cards})

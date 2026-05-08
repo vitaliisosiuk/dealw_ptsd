@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Вихід з дому{% endblock %}
+
+{% block header %}
+    {% include "header.html" with is_transparent=False %}
+{% endblock %}
+
+{% block content %}
+    <div class="min-h-screen pt-28 md:pt-32 pb-20 bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-3xl sm:text-4xl font-['Raleway'] font-semibold text-slate-900">Вихід з дому</h1>
+                <a href="{% url 'tools:home' %}" class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors">
+                    Назад
+                </a>
+            </div>
+
+            <div class="relative max-w-xl mx-auto">
+                <article class="rounded-2xl bg-white border border-slate-100 shadow-sm overflow-hidden">
+                    <div class="relative">
+                        <button id="shareBtn" type="button" class="absolute top-4 right-4 z-10 inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white border-2 border-[#0b6ea8] text-[#0b6ea8] hover:bg-sky-50 transition-colors" aria-label="Поділитися">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 13.5l7-4m-7 1l7 4M6 15.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm12 6a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm0-12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path>
+                            </svg>
+                        </button>
+
+                        <button id="prevBtn" type="button" class="absolute top-1/2 -translate-y-1/2 -left-4 sm:-left-6 z-10 w-12 h-12 rounded-md bg-[#0b6ea8] text-white flex items-center justify-center hover:bg-[#085784] transition-colors" aria-label="Попередня картка">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+
+                        <img id="cardImage" src="" alt="" class="w-full h-[360px] sm:h-[480px] object-cover">
+
+                        <button id="nextBtn" type="button" class="absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-6 z-10 w-12 h-12 rounded-md bg-[#0b6ea8] text-white flex items-center justify-center hover:bg-[#085784] transition-colors" aria-label="Наступна картка">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6 sm:p-7">
+                        <p id="cardDescription" class="text-2xl leading-relaxed text-slate-800"></p>
+                    </div>
+                </article>
+
+                <button id="whyBtn" type="button" class="mt-6 w-full inline-flex items-center justify-center px-6 py-4 rounded-xl border-2 border-[#0b6ea8] text-[#0b6ea8] text-3xl font-semibold hover:bg-sky-50 transition-colors">
+                    Навіщо це?
+                </button>
+                {% if request.user.is_staff %}
+                    <a href="/admin/tools/gettingoutofhousecard/add/" class="mt-4 w-full inline-flex items-center justify-center px-6 py-4 rounded-xl border-2 border-[#0b6ea8] text-[#0b6ea8] text-3xl font-semibold hover:bg-sky-50 transition-colors">
+                        Додати власний контент
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div id="whyModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-900/45"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="w-full max-w-2xl max-h-[90vh] overflow-auto rounded-3xl bg-white p-6 sm:p-8 shadow-xl">
+                <div class="flex items-start justify-between gap-4">
+                    <h2 class="text-3xl font-semibold text-slate-900">Чому це допомагає?</h2>
+                    <button id="closeModalBtn" type="button" class="w-11 h-11 rounded-xl bg-slate-100 text-[#0b6ea8] hover:bg-slate-200 transition-colors" aria-label="Закрити">
+                        <svg class="w-7 h-7 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="whyText" class="mt-6 text-2xl text-slate-800 leading-relaxed whitespace-pre-line"></div>
+            </div>
+        </div>
+    </div>
+
+    {{ cards|json_script:"getting-out-cards-data" }}
+    <script>
+        (function () {
+            const cardsRaw = JSON.parse(document.getElementById('getting-out-cards-data').textContent || '[]');
+            const cards = cardsRaw.filter(card => (card.display_image_url || card.image_url || '').trim() !== '');
+
+            const fallbackWhy = [
+                "• Відволікання: приємна активність може переключити фокус з тривожних думок.",
+                "• Зниження стресу: короткий вихід з дому часто дає відчуття полегшення.",
+                "• Покращення настрою: рух і нові враження підтримують емоційний стан.",
+                "• Відчуття досягнення: навіть маленький крок повертає контроль.",
+                "• Соціальний контакт: взаємодія з людьми зменшує ізоляцію."
+            ].join("\n");
+
+            if (!cards.length) {
+                return;
+            }
+
+            let index = 0;
+            const cardImage = document.getElementById('cardImage');
+            const cardDescription = document.getElementById('cardDescription');
+            const shareBtn = document.getElementById('shareBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const whyBtn = document.getElementById('whyBtn');
+            const whyModal = document.getElementById('whyModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const whyText = document.getElementById('whyText');
+
+            function currentCard() {
+                return cards[index];
+            }
+
+            function renderCard() {
+                const card = currentCard();
+                cardImage.dataset.fallback = card.fallback_image_url || '';
+                cardImage.dataset.placeholder = 'https://placehold.co/900x1200/e2e8f0/334155?text=%D0%92%D0%B8%D1%85%D1%96%D0%B4+%D0%B7+%D0%B4%D0%BE%D0%BC%D1%83';
+                cardImage.dataset.fallbackUsed = '0';
+                cardImage.src = card.display_image_url || card.image_url || card.fallback_image_url || cardImage.dataset.placeholder;
+                cardImage.alt = card.title || 'Картка підтримки';
+                cardDescription.textContent = card.description || card.title;
+                whyText.textContent = card.why_it_helps || fallbackWhy;
+            }
+
+            function next() {
+                index = (index + 1) % cards.length;
+                renderCard();
+            }
+
+            function prev() {
+                index = (index - 1 + cards.length) % cards.length;
+                renderCard();
+            }
+
+            async function shareCurrent() {
+                const card = currentCard();
+                const text = card.description || card.title;
+                const data = {
+                    title: 'Вихід з дому',
+                    text,
+                    url: window.location.href,
+                };
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share(data);
+                    } catch (e) {
+                        // Ignore cancelled share action.
+                    }
+                    return;
+                }
+
+                try {
+                    await navigator.clipboard.writeText(`${text}\n${window.location.href}`);
+                    alert('Текст картки скопійовано.');
+                } catch (e) {
+                    alert('Не вдалося поділитися карткою.');
+                }
+            }
+
+            function openWhy() {
+                whyModal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+
+            function closeWhy() {
+                whyModal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+
+            nextBtn.addEventListener('click', next);
+            prevBtn.addEventListener('click', prev);
+            shareBtn.addEventListener('click', shareCurrent);
+            whyBtn.addEventListener('click', openWhy);
+            closeModalBtn.addEventListener('click', closeWhy);
+            whyModal.addEventListener('click', (event) => {
+                if (event.target === whyModal || event.target.classList.contains('bg-slate-900/45')) {
+                    closeWhy();
+                }
+            });
+            cardImage.addEventListener('error', () => {
+                if (cardImage.dataset.fallbackUsed === '0' && cardImage.dataset.fallback) {
+                    cardImage.dataset.fallbackUsed = '1';
+                    cardImage.src = cardImage.dataset.fallback;
+                    return;
+                }
+                cardImage.src = cardImage.dataset.placeholder;
+            });
+
+            renderCard();
+        })();
+    </script>
+{% endblock %}

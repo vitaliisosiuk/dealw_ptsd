@@ -1,7 +1,9 @@
 from django.db import models
 from django.conf import settings
 
+
 class Assessment(models.Model):
+    """Assessment definition and metadata shown in the UI."""
     title = models.CharField(max_length=200, verbose_name="Назва тесту")
     short_name = models.SlugField(max_length=50, unique=True, verbose_name="Коротка назва (для URL)")
     description = models.TextField(blank=True, verbose_name="Опис тесту (для списку)")
@@ -26,6 +28,7 @@ class Assessment(models.Model):
         return self.title
 
 class Question(models.Model):
+    """A single question belonging to an assessment."""
     assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE, related_name='questions', verbose_name="Тест")
     text = models.CharField(max_length=500, verbose_name="Текст запитання")
     order = models.PositiveIntegerField(default=0, verbose_name="Порядковий номер")
@@ -40,6 +43,7 @@ class Question(models.Model):
         return f"[{self.assessment.short_name}] {self.order}. {self.text}"
 
 class Choice(models.Model):
+    """Answer option carrying a numeric score value."""
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices', verbose_name="Запитання")
     value = models.PositiveIntegerField(verbose_name="Кількість балів (0, 1, 2...)")
     text = models.CharField(max_length=200, verbose_name="Текст відповіді")
@@ -53,6 +57,7 @@ class Choice(models.Model):
         return f"[{self.question.assessment.short_name}] {self.value} - {self.text}"
 
 class ResultInterpretation(models.Model):
+    """Score range interpretation for an assessment or subscale."""
     assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE, related_name='interpretations', verbose_name="Тест")
     min_score = models.PositiveIntegerField(verbose_name="Мінімальний бал")
     max_score = models.PositiveIntegerField(verbose_name="Максимальний бал")
@@ -73,6 +78,8 @@ class ResultInterpretation(models.Model):
         return f"[{self.assessment.short_name}] {self.min_score}-{self.max_score} балів: {self.result_title}"
 
 class TestResult(models.Model):
+    """Persisted user attempt result for an assessment."""
+    __test__ = False
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='test_results', verbose_name="Користувач")
     assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE, related_name='results', verbose_name="Тест")
     total_score = models.PositiveIntegerField(verbose_name="Загальний бал")

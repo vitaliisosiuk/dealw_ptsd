@@ -5,7 +5,9 @@ from django.contrib.auth.forms import SetPasswordForm, PasswordResetForm
 
 User = get_user_model()
 
+
 class CustomUserCreationForm(UserCreationForm):
+    """Registration form with email-first signup fields."""
     email = forms.EmailField(
         required=True,
         max_length=100,
@@ -32,6 +34,7 @@ class CustomUserCreationForm(UserCreationForm):
     )
 
     def __init__(self, *args, **kwargs):
+        """Customize password widgets and labels."""
         super().__init__(*args, **kwargs)
 
         self.fields['password1'].widget.attrs.update({
@@ -53,12 +56,14 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'email')
 
     def clean_email(self):
+        """Reject duplicate emails before creating a new user."""
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Цей email вже використовується.')
         return email
 
     def save(self, commit=True):
+        """Persist user while keeping username disabled."""
         user = super().save(commit=False)
         user.username = None
         if commit:
@@ -67,6 +72,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserLoginForm(AuthenticationForm):
+    """Login form that authenticates using email and password."""
     username = forms.CharField(
         label='Email',
         widget=forms.TextInput(attrs={'autofocus': True, 'class': 'w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#89b83a] outline-none transition-all input-register form-control',
@@ -79,6 +85,7 @@ class CustomUserLoginForm(AuthenticationForm):
     )
 
     def clean(self):
+        """Validate credentials and active account status."""
         email = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 
@@ -92,6 +99,7 @@ class CustomUserLoginForm(AuthenticationForm):
 
 
 class CustomUserUpdateForm(forms.ModelForm):
+    """Profile details update form with read-only email."""
     first_name = forms.CharField(
         required=True,
         max_length=50,
@@ -113,10 +121,15 @@ class CustomUserUpdateForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
     def clean_email(self):
+        """Keep the original email unchanged from the model instance."""
         return self.instance.email
 
+
 class CustomSetPasswordForm(SetPasswordForm):
+    """Password reset confirmation form with custom styling."""
+
     def __init__(self, *args, **kwargs):
+        """Apply consistent UI attributes to password fields."""
         super().__init__(*args, **kwargs)
 
         self.fields['new_password1'].widget.attrs.update({
@@ -134,6 +147,8 @@ class CustomSetPasswordForm(SetPasswordForm):
         self.fields['new_password2'].help_text = ''
 
 class CustomPasswordResetForm(PasswordResetForm):
+    """Password reset request form with custom email input styling."""
+
     email = forms.EmailField(
         label='Email',
         max_length=254,

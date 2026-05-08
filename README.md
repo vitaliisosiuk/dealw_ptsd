@@ -18,6 +18,7 @@ Web platform for PTSD support with self-help tools, assessments, trigger mapping
 - Inspirational cards with image export
 - Meditation player (duration-based options)
 - Personal journal with writing prompts
+- "Вихід з дому" tool with photo cards carousel (30 starter cards)
 
 ## Project Structure
 

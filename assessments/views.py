@@ -1,15 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
-from .models import Assessment, TestResult, Choice, ResultInterpretation
+from .models import Assessment, TestResult
 from django.contrib.auth.decorators import login_required
 
+
 def _redirect_if_anonymous(request):
+    """Redirect anonymous users to registration page."""
     if not request.user.is_authenticated:
         return redirect('accounts:register')
     return None
 
+
 def test_main_view(request):
+    """Render intro page with all available assessments."""
     assessments = Assessment.objects.all()
     tests_data = []
 
@@ -26,6 +30,7 @@ def test_main_view(request):
 
 
 def about_test(request, test_slug):
+    """Render details page for a specific assessment."""
     auth_redirect = _redirect_if_anonymous(request)
     if auth_redirect:
         return auth_redirect
@@ -39,6 +44,7 @@ def about_test(request, test_slug):
 
 
 def take_test(request, test_slug):
+    """Render test form and persist score results on submit."""
     auth_redirect = _redirect_if_anonymous(request)
     if auth_redirect:
         return auth_redirect
@@ -90,6 +96,7 @@ def take_test(request, test_slug):
 
 
 def test_result(request, test_slug):
+    """Render result page from values stored in session."""
     auth_redirect = _redirect_if_anonymous(request)
     if auth_redirect:
         return auth_redirect
@@ -157,6 +164,7 @@ def test_result(request, test_slug):
 
 @login_required
 def test_result_detail(request, result_id):
+    """Render result page for a previously saved test result."""
     result = get_object_or_404(TestResult.objects.select_related("assessment"), id=result_id, user=request.user)
     assessment = result.assessment
 

@@ -2,10 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.html import strip_tags
 
-#Create your models here.
 
 class CustomUserManager(BaseUserManager):
+    """Custom user manager that authenticates users by email."""
+
     def create_user(self, email, first_name, last_name, password=None, **extra_fields):
+        """Create and persist a regular user with normalized email."""
         if not email:
             raise ValueError('An email is required')
         email = self.normalize_email(email)
@@ -20,6 +22,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, first_name, last_name, password=None, **extra_fields):
+        """Create and persist a superuser with required permissions."""
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
@@ -33,6 +36,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
+    """Project user model that replaces username with unique email."""
+
     username = None
 
     email = models.EmailField(unique=True, max_length=100, verbose_name="Електронна пошта")
@@ -45,9 +50,11 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
+        """Return a compact identity string for admin and logs."""
         return f"{self.first_name} {self.last_name} ({self.email})"
 
     def clean(self):
+        """Sanitize name fields to prevent storing HTML."""
         super().clean()
         for field in ['first_name', 'last_name']:
             value = getattr(self, field)

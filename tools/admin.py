@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import TriggerOption, ReactionOption, ContextOption, TriggerLog, LogReaction, InspirationalQuote, JournalEntry
+from .models import (
+    TriggerOption,
+    ReactionOption,
+    ContextOption,
+    TriggerLog,
+    LogReaction,
+    InspirationalQuote,
+    JournalEntry,
+    GettingOutOfHouseCard,
+)
 
 @admin.register(TriggerOption)
 class TriggerOptionAdmin(admin.ModelAdmin):
@@ -45,3 +54,13 @@ class JournalEntryAdmin(admin.ModelAdmin):
     list_display = ("user", "created_at")
     search_fields = ("user__email", "text")
     ordering = ("-created_at",)
+
+
+@admin.register(GettingOutOfHouseCard)
+class GettingOutOfHouseCardAdmin(admin.ModelAdmin):
+    """Admin setup for carousel cards in 'Getting out of house'."""
+
+    list_display = ("title", "sort_order", "is_active", "created_at")
+    list_filter = ("is_active",)
+    search_fields = ("title", "description", "why_it_helps")
+    ordering = ("sort_order", "id")
